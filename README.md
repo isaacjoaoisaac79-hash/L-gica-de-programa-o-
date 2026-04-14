@@ -1,6 +1,6 @@
 # L-gica-de-programa-o-
-Lógica de programação exercícios resolvidos 
-
+Lógica de programação exercícios das tarefas,resolvidos. 
+João Isaac Dos Santos Francisco 
 
 Algoritmo "contar_numero"
 Var
