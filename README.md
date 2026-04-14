@@ -1,7 +1,7 @@
 # L-gica-de-programa-o-
 Lógica de programação exercícios das tarefas,resolvidos. 
 João Isaac Dos Santos Francisco 
-
+//1. Verificar quantas vezes um número aparece no vetor
 Algoritmo "contar_numero"
 Var
    vetor: Vetor[1..20] de Inteiro
@@ -29,7 +29,7 @@ Inicio
    Escreval("O número aparece ", contador, " vezes.")
 FimAlgoritmo
 
-
+2. Mostrar o segundo maior valor
 
 
 Algoritmo "segundo_maior"
@@ -57,7 +57,7 @@ Inicio
       FimSe
 
 
-
+3. Somar dois vetores
 
 
 Algoritmo "soma_vetores"
@@ -96,7 +96,7 @@ FimAlgoritmo
 
 
 
-
+4. Deslocar vetor e inserir valor na primeira posição
 
 
 
@@ -128,7 +128,7 @@ Inicio
 FimAlgoritmo
 
 
-
+5. Mostrar vetor em ordem crescente (sem algoritmo de ordenação formal) 
 
 Algoritmo "ordem_crescente"
 Var
