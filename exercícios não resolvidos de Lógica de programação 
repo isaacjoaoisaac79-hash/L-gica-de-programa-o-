@@ -1,0 +1,311 @@
+1. Insertion Sort contando deslocamentos
+
+
+
+Algoritmo "InsertionSortDeslocamentos"
+
+Var
+   vetor: vetor[1..10] de inteiro
+   i, j, chave, deslocamentos: inteiro
+
+Inicio
+
+   vetor[1] <- 9
+   vetor[2] <- 5
+   vetor[3] <- 1
+   vetor[4] <- 4
+   vetor[5] <- 3
+   vetor[6] <- 8
+   vetor[7] <- 2
+   vetor[8] <- 7
+   vetor[9] <- 6
+   vetor[10] <- 0
+
+   deslocamentos <- 0
+
+   Para i de 2 ate 10 faca
+      chave <- vetor[i]
+      j <- i - 1
+
+      Enquanto (j >= 1) e (vetor[j] > chave) faca
+         vetor[j + 1] <- vetor[j]
+         deslocamentos <- deslocamentos + 1
+         j <- j - 1
+      FimEnquanto
+
+      vetor[j + 1] <- chave
+   FimPara
+
+   Escreval("Vetor ordenado:")
+
+   Para i de 1 ate 10 faca
+      Escre(vetor[i], " ")
+   FimPara
+
+   Escreval("")
+   Escreval("Quantidade de deslocamentos: ", deslocamentos)
+
+FimAlgoritmo
+
+
+2. Função que retorna a posição de inserção em vetor ordenado
+
+
+
+Algoritmo "PosicaoInsercao"
+
+Var
+   vetor: vetor[1..5] de inteiro
+   valor, posicao: inteiro
+
+Funcao PosInserir(v: vetor[1..5] de inteiro, valor: inteiro): inteiro
+Var
+   i: inteiro
+Inicio
+
+   Para i de 1 ate 5 faca
+      Se valor < v[i] entao
+         Retorne i
+      FimSe
+   FimPara
+
+   Retorne 6
+
+FimFuncao
+
+Inicio
+
+   vetor[1] <- 2
+   vetor[2] <- 4
+   vetor[3] <- 6
+   vetor[4] <- 8
+   vetor[5] <- 10
+
+   Escre("Digite o valor: ")
+   Leia(valor)
+
+   posicao <- PosInserir(vetor, valor)
+
+   Escreval("Posicao de insercao: ", posicao)
+
+FimAlgoritmo
+
+
+3. Ordenar matriz 5x5 por linhas
+
+
+
+Algoritmo "OrdenarMatriz"
+
+Var
+   matriz: vetor[1..5,1..5] de inteiro
+   i, j, k, temp: inteiro
+
+Inicio
+
+   Para i de 1 ate 5 faca
+      Para j de 1 ate 5 faca
+         Escre("Digite o valor [", i, ",", j, "]: ")
+         Leia(matriz[i,j])
+      FimPara
+   FimPara
+
+   Para i de 1 ate 5 faca
+
+      Para j de 1 ate 4 faca
+         Para k de j + 1 ate 5 faca
+
+            Se matriz[i,j] > matriz[i,k] entao
+               temp <- matriz[i,j]
+               matriz[i,j] <- matriz[i,k]
+               matriz[i,k] <- temp
+            FimSe
+
+         FimPara
+      FimPara
+
+   FimPara
+
+   Escreval("Matriz ordenada:")
+
+   Para i de 1 ate 5 faca
+      Para j de 1 ate 5 faca
+         Escre(matriz[i,j], " ")
+      FimPara
+      Escreval("")
+   FimPara
+
+FimAlgoritmo
+
+
+
+4. Busca binária retornando todas as ocorrências
+
+
+
+Algoritmo "BuscaBinariaOcorrencias"
+
+Var
+   vetor: vetor[1..10] de inteiro
+   valor, ini, fi, meio, i: inteiro
+   encontrou: logico
+
+Inicio
+
+   vetor[1] <- 1
+   vetor[2] <- 2
+   vetor[3] <- 2
+   vetor[4] <- 3
+   vetor[5] <- 4
+   vetor[6] <- 4
+   vetor[7] <- 4
+   vetor[8] <- 5
+   vetor[9] <- 6
+   vetor[10] <- 7
+
+   Escre("Digite o valor procurado: ")
+   Leia(valor)
+
+   ini <- 1
+   fi7 <- 10
+   encontrou <- falso
+
+   Enquanto ini <= fim faca
+
+      meio <- (ini + fi) div 2
+
+      Se vetor[meio] = valor entao
+
+         encontrou <- verdadeiro
+
+         i <- meio
+
+         Enquanto (i >= 1) e (vetor[i] = valor) faca
+            i <- i - 1
+         FimEnquanto
+
+         i <- i + 1
+
+         Enquanto (i <= 10) e (vetor[i] = valor) faca
+            Escreval("Encontrado na posicao: ", i)
+            i <- i + 1
+         FimEnquanto
+
+         Pare
+
+      Senao
+         Se vetor[meio] < valor entao
+            inicio <- meio + 1
+         Senao
+            fim <- meio - 1
+         FimSe
+      FimSe
+
+   FimEnquanto
+
+   Se encontrou = falso entao
+      Escreval("Valor nao encontrado")
+   FimSe
+
+FimAlgoritmo
+
+
+
+
+
+5. Merge Sort
+
+
+
+
+
+Algoritmo "MergeSort"
+
+Var
+   vetor: vetor[1..10] de inteiro
+   i: inteiro
+
+Procedimento Merge(var v: vetor[1..10] de inteiro, inicio, meio, fim: inteiro)
+Var
+   aux: vetor[1..10] de inteiro
+   i, j, k: inteiro
+
+Inicio
+
+   i <- inicio
+   j <- meio + 1
+   k <- inicio
+
+   Enquanto (i <= meio) e (j <= fim) faca
+
+      Se v[i] < v[j] entao
+         aux[k] <- v[i]
+         i <- i + 1
+      Senao
+         aux[k] <- v[j]
+         j <- j + 1
+      FimSe
+
+      k <- k + 1
+
+   FimEnquanto
+
+   Enquanto i <= meio faca
+      aux[k] <- v[i]
+      i <- i + 1
+      k <- k + 1
+   FimEnquanto
+
+   Enquanto j <= fim faca
+      aux[k] <- v[j]
+      j <- j + 1
+      k <- k + 1
+   FimEnquanto
+
+   Para i de inicio ate fim faca
+      v[i] <- aux[i]
+   FimPara
+
+FimProcedimento
+
+Procedimento MergeSort(var v: vetor[1..10] de inteiro, inicio, fim: inteiro)
+Var
+   meio: inteiro
+
+Inicio
+
+   Se inicio < fim entao
+
+      meio <- (inicio + fim) div 2
+
+      MergeSort(v, inicio, meio)
+      MergeSort(v, meio + 1, fim)
+
+      Merge(v, inicio, meio, fim)
+
+   FimSe
+
+FimProcedimento
+
+Inicio
+
+   vetor[1] <- 9
+   vetor[2] <- 3
+   vetor[3] <- 7
+   vetor[4] <- 1
+   vetor[5] <- 8
+   vetor[6] <- 2
+   vetor[7] <- 5
+   vetor[8] <- 4
+   vetor[9] <- 10
+   vetor[10] <- 6
+
+   MergeSort(vetor, 1, 10)
+
+   Escreval("Vetor ordenado:")
+
+   Para i de 1 ate 10 faca
+      Escre(vetor[i], " ")
+   FimPara
+
+FimAlgoritmo
