@@ -1,0 +1,285 @@
+
+1. Bubble Sort com contagem do número de trocas
+
+
+Algoritmo "bubble_sort_contagem"
+Const
+   TAM = 10
+Var
+   v: Vetor[1..TAM] de Inteiro
+   i, j, temp, trocas: Inteiro
+Inicio
+   // Leitura
+   Para i <- 1 Ate TAM faca
+      Escreva("v[", i, "]: ")
+      Leia(v[i])
+   FimPara
+
+   // Bubble Sort com contagem
+   trocas <- 0
+   Para i <- 1 Ate TAM-1 faca
+      Para j <- 1 Ate TAM-i faca
+         Se (v[j] > v[j+1]) Entao
+            temp <- v[j]
+            v[j] <- v[j+1]
+            v[j+1] <- temp
+            trocas <- trocas + 1
+         FimSe
+      FimPara
+   FimPara
+
+   // Exibição
+   Escreval("Vetor ordenado:")
+   Para i <- 1 Ate TAM faca
+      Escreva(v[i], " ")
+   FimPara
+   Escreval("")
+   Escreval("Número de trocas: ", trocas)
+FimAlgoritmo
+
+
+
+2. Algoritimo de busca recursiva 
+
+
+Algoritmo "busca_binaria_recursiva"
+Const
+   TAM = 10
+Var
+   v: Vetor[1..TAM] de Inteiro
+   i, valor, pos: Inteiro
+
+funcao busca_recursiva(vet: Vetor[1..TAM] de Inteiro; ini, fim, val: Inteiro): Inteiro
+Var
+   meio: Inteiro
+Inicio
+   Se (ini > fim) Entao
+      retorne -1
+   FimSe
+   meio <- (ini + fim) \ 2
+   Se (vet[meio] = val) Entao
+      retorne meio
+   Senao Se (val < vet[meio]) Entao
+      retorne busca_recursiva(vet, ini, meio - 1, val)
+   Senao
+      retorne busca_recursiva(vet, meio + 1, fim, val)
+   FimSe
+FimFuncao
+
+Inicio
+   // Vetor ordenado
+   Para i <- 1 Ate TAM faca
+      v[i] <- i * 3 // 3, 6, 9,..., 30
+   FimPara
+
+   Escreva("Digite o valor a buscar: ")
+   Leia(valor)
+   pos <- busca_recursiva(v, 1, TAM, valor)
+
+   Se (pos <> -1) Entao
+      Escreval("Valor encontrado na posição ", pos)
+   Senao
+      Escreval("Valor não encontrado")
+   FimSe
+FimAlgoritmo
+
+3. Ordenação alfabética usando Selection Sort de strings
+
+Algoritmo "selection_sort_strings"
+Const
+   TAM = 5
+Var
+   nomes: Vetor[1..TAM] de Caractere
+   i, j, min: Inteiro
+   temp: Caractere
+Inicio
+   // Leitura
+   Para i <- 1 Ate TAM faca
+      Escreva("Nome ", i, ": ")
+      Leia(nomes[i])
+   FimPara
+
+   // Selection Sort
+   Para i <- 1 Ate TAM-1 faca
+      min <- i
+      Para j <- i+1 Ate TAM faca
+         Se (nomes[j] < nomes[min]) Entao
+            min <- j
+         FimSe
+      FimPara
+      Se (min <> i) Entao
+         temp <- nomes[i]
+         nomes[i] <- nomes[min]
+         nomes[min] <- temp
+      FimSe
+   FimPara
+
+   // Exibição
+   Escreval("Nomes em ordem alfabética:")
+   Para i <- 1 Ate TAM faca
+      Escreval(nomes[i])
+   FimPara
+FimAlgoritmo
+
+
+
+
+4. Combinação de algoritmos de ordenação e de pesquisa
+
+
+algoritmo "sistema_busca"
+
+const
+   TAM = 10
+
+var
+   v: vetor[1..TAM] de inteiro
+   i, opcao, valor, pos: inteiro
+   ordenado: logico
+
+
+procedimento ordenar(var vet: vetor[1..TAM] de inteiro)
+
+var
+   i, j, temp: inteiro
+
+inicio
+
+   para i de 1 ate TAM - 1 faca
+
+      para j de 1 ate TAM - i faca
+
+         se vet[j] > vet[j + 1] entao
+
+            temp <- vet[j]
+            vet[j] <- vet[j + 1]
+            vet[j + 1] <- temp
+
+         fimse
+
+      fimpara
+
+   fimpara
+
+fimprocedimento
+
+
+
+funcao buscar(vet: vetor[1..TAM] de inteiro; val: inteiro): inteiro
+
+var
+   ini, fim, meio: inteiro
+
+inicio
+
+   ini <- 1
+   fim <- TAM
+
+   enquanto ini <= fim faca
+
+      meio <- (ini + fim) div 2
+
+      se vet[meio] = val entao
+
+         retorne meio
+
+      senao
+
+         se val < vet[meio] entao
+            fim <- meio - 1
+         senao
+            ini <- meio + 1
+         fimse
+
+      fimse
+
+   fimenquanto
+
+   retorne -1
+
+fimfuncao
+
+
+
+inicio
+
+   escreval("Digite 10 numeros:")
+
+   para i de 1 ate TAM faca
+      leia(v[i])
+   fimpara
+
+   ordenado <- falso
+
+   repita
+
+      escreval("")
+      escreval("===== MENU =====")
+      escreval("1 - Ordenar vetor")
+      escreval("2 - Buscar valor")
+      escreval("3 - Exibir vetor")
+      escreval("4 - Sair")
+
+      escreva("Opcao: ")
+      leia(opcao)
+
+      escolha opcao
+
+         caso 1
+
+            ordenar(v)
+            ordenado <- verdadeiro
+
+            escreval("Vetor ordenado com sucesso!")
+
+         caso 2
+
+            se ordenado entao
+
+               escreva("Valor a buscar: ")
+               leia(valor)
+
+               pos <- buscar(v, valor)
+
+               se pos <> -1 entao
+                  escreval("Valor encontrado na posicao ", pos)
+               senao
+                  escreval("Valor nao encontrado")
+               fimse
+
+            senao
+
+               escreval("Vetor nao esta ordenado! Ordene primeiro.")
+
+            fimse
+
+         caso 3
+
+            escreva("Vetor: ")
+
+            para i de 1 ate TAM faca
+               escreva(v[i], " ")
+            fimpara
+
+            escreval("")
+
+            se ordenado entao
+               escreval("Status: Ordenado")
+            senao
+               escreval("Status: Nao ordenado")
+            fimse
+
+         caso 4
+
+            escreval("Encerrando...")
+
+         outrocaso
+
+            escreval("Opcao invalida!")
+
+      fimescolha
+
+   ate opcao = 4
+
+fimalgoritmo
+
